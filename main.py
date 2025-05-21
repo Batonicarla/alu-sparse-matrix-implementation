@@ -43,13 +43,11 @@ def get_output_file_path():
     while True:
         file_path = input("Enter output file path: ")
 
-        # Check if file exists and confirm overwrite
         if os.path.exists(file_path):
             confirm = input(f"File '{file_path}' already exists. Overwrite? (y/n): ")
             if confirm.lower() == 'y':
                 return file_path
         else:
-            # Check if directory exists
             directory = os.path.dirname(file_path)
             if directory and not os.path.exists(directory):
                 try:
@@ -73,7 +71,6 @@ def view_matrix_details():
               f"({len(matrix.elements)} / {matrix.num_rows * matrix.num_cols})")
         print(f"Load time: {load_time:.4f} seconds")
 
-        # Print a sample of the matrix if it's not too large
         if matrix.num_rows <= 10 and matrix.num_cols <= 10:
             print("\nMatrix content:")
             for i in range(matrix.num_rows):
@@ -82,7 +79,6 @@ def view_matrix_details():
                     row.append(str(matrix.get_element(i, j)))
                 print(" ".join(row))
         else:
-            # For larger matrices, print first few non-zero elements
             print("\nSample of non-zero elements:")
             count = 0
             for (row, col), value in sorted(matrix.elements.items()):
@@ -99,11 +95,9 @@ def view_matrix_details():
 
 def perform_operation(operation):
     try:
-        # Get input files
         file1 = get_file_path("Enter first matrix file path: ")
         file2 = get_file_path("Enter second matrix file path: ")
 
-        # Load matrices
         print("\nLoading matrices...")
         start_time = time.time()
         matrix1 = SparseMatrix(file1)
@@ -111,21 +105,19 @@ def perform_operation(operation):
         load_time = time.time() - start_time
         print(f"Matrices loaded in {load_time:.4f} seconds")
 
-        # Perform operation
         print(f"\nPerforming {'addition' if operation == 1 else 'subtraction' if operation == 2 else 'multiplication'}...")
         start_time = time.time()
 
-        if operation == 1:  # Addition
+        if operation == 1:
             result = matrix1.add(matrix2)
-        elif operation == 2:  # Subtraction
+        elif operation == 2:
             result = matrix1.subtract(matrix2)
-        else:  # Multiplication
+        else:
             result = matrix1.multiply(matrix2)
 
         operation_time = time.time() - start_time
         print(f"Operation completed in {operation_time:.4f} seconds")
 
-        # Get output file and save result
         output_file = get_output_file_path()
         result.save_to_file(output_file)
         print(f"\nResult saved to '{output_file}'")
@@ -144,12 +136,12 @@ def main():
 
         choice = get_operation()
 
-        if choice == 5:  # Exit
+        if choice == 5:
             print("\nExiting program. Goodbye!")
             sys.exit(0)
-        elif choice == 4:  # View Matrix Details
+        elif choice == 4:
             view_matrix_details()
-        else:  # Matrix operations (1-3)
+        else:
             perform_operation(choice)
 
 if __name__ == "__main__":
