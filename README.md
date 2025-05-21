@@ -3,16 +3,18 @@
 A Python implementation of a sparse matrix data structure for Data Structures and Algorithms for Engineers (Programming Assignment 2).
 
 
-
-
 /dsa
   /sparse_matrix
     /code
       /src
-        sparse_matrix.py    - Main SparseMatrix class implementation
-        test_sparse_matrix.py - Unit tests
-        create_sample_matrices.py - Utility to create sample files
-    /sample_inputs          - Sample matrix files
+        sparse_matrix.py   
+        - Main SparseMatrix class implementation
+        test_sparse_matrix.py
+        - Unit tests
+        create_sample_matrices.py 
+        - Utility to create sample files
+    /sample_inputs        
+    - Sample matrix files
 
 
 
@@ -44,7 +46,9 @@ python test_sparse_matrix.py
 
 
 rows=<number_of_rows>
+
 cols=<number_of_columns>
+
 (row, col, value)
 (row, col, value)
 ...
